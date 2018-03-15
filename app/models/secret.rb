@@ -4,7 +4,12 @@ class Secret < ApplicationRecord
   after_validation :geocode
 
 def returnSecret
-  Secret.all.sample
+  secret_found = Secret.all.sample
+    if secret_found == self
+       return self.returnSecret
+    else
+      return secret_found
+    end
 end
 
    def returnSecretComplex
@@ -12,7 +17,7 @@ end
     if @secret_found != self
       return @secret_found
     else
-        return self.findSecretsample
+        return self.findSecret.sample
      end
     end
 
