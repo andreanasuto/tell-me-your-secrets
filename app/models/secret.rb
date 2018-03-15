@@ -1,5 +1,7 @@
 class Secret < ApplicationRecord
-belongs_to :location
+  geocoded_by :ip_address,
+  :latitude => :lat, :longitude => :lon
+  after_validation :geocode
 
 
   def returnSecret
@@ -11,5 +13,4 @@ belongs_to :location
         return Secret.all.sample
     end
   end
-
 end
