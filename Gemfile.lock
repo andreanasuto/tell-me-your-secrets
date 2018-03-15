@@ -64,7 +64,6 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     erubi (1.7.1)
-    espeak-ruby (1.0.4)
     execjs (2.7.0)
     ffi (1.9.23)
     geocoder (1.4.7)
@@ -185,7 +184,6 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-  espeak-ruby
   geocoder
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
