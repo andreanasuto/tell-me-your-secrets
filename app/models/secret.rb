@@ -3,14 +3,22 @@ class Secret < ApplicationRecord
   :latitude => :lat, :longitude => :lon
   after_validation :geocode
 
+def returnSecret
+  Secret.all.sample
+end
 
-  def returnSecret
-    #@secret_sentences = self.all.map { |e| e.sentence }
-    @secret_found = Secret.all.find { |secret| secret.sentence.include?(self.sentence.split[0])}
+   def returnSecretComplex
+    @secret_found = self.findSecret
     if @secret_found != self
       return @secret_found
     else
-        return Secret.all.sample
+        return self.findSecretsample
+     end
     end
+
+  def findSecret
+
+      Secret.all.find_all{ |secret| self.sentence.split.find { |i| secret.sentence.include?(i) } }
+    
   end
-end
+end  
