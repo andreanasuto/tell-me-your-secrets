@@ -6,10 +6,7 @@ class SecretsController < ApplicationController
   end
 
   def create
-    @secret = Secret.create(sentence: params[:secret][:sentence])
-    city = request.location.city
-    country = request.location.country_code
-    binding.pry
+    @secret = Secret.create(sentence: params[:secret][:sentence], latitude: request.location.latitude, longitude: request.location.longitude)
     redirect_to secret_path(@secret)
   end
 
