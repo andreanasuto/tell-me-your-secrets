@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+"I'll share a secret and you'll tell yours"
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+'Tell me your secret' is a ROR (Ruby on Rails) app inspired by 'The future of secrets' art exhibition by Sarah Newman, Jessica Yurkofsky and Rachel Kalmar from metaLab (at) Harvard part of the Berkman Klein Center for Internet & Society.

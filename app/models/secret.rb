@@ -3,6 +3,8 @@ class Secret < ApplicationRecord
   :latitude => :lat, :longitude => :lon
   after_validation :geocode
 
+# return a secret once a secret is shared
+
 def returnSecret
   secret_found = Secret.all.sample
     if secret_found == self
@@ -11,6 +13,8 @@ def returnSecret
       return secret_found
     end
 end
+
+# more complex method to return secret found
 
    def returnSecretComplex
     @secret_found = self.findSecret
