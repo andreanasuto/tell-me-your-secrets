@@ -9,7 +9,7 @@ Once the secret is written down, another secret is shared back together with the
 
 ## The idea
 ### The background
-![ELIZA by prof. Weizenbaum](https://en.wikipedia.org/wiki/ELIZA#/media/File:ELIZA_conversation.jpg)
+![ELIZA by prof. Weizenbaum](https://upload.wikimedia.org/wikipedia/commons/4/4e/ELIZA_conversation.jpg)
 The idea behind the project is inspired by the 1966 experiment [ELIZA](https://en.wikipedia.org/wiki/ELIZA) by the MIT professor [Joseph Weizenbaum](https://en.wikipedia.org/wiki/Joseph_Weizenbaum), one of the father of artificial intelligence. The program showed an interesting paradox in the relationship between machine and human.
 
 > While ELIZA was capable of engaging in discourse, ELIZA could not converse with true understanding. However, many early users were convinced of ELIZA’s intelligence and understanding, despite Weizenbaum’s insistence to the contrary.
