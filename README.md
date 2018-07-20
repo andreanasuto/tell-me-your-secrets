@@ -4,6 +4,8 @@
 
 'Tell me your secret' is a ROR (Ruby on Rails) app inspired by 'The future of secrets' art exhibition by Sarah Newman, Jessica Yurkofsky and Rachel Kalmar from [metaLab (at) Harvard](https://metalabharvard.github.io/) part of the Berkman Klein Center for Internet & Society.
 
+[Live version](https://tell-me-your-secrets.herokuapp.com/secrets/new)
+
 A simple form asks to anonymously share a secret. The app automatically store the IP address of the user inserting the secret.
 Once the secret is written down, another secret is shared back together with the geo-location of that secret.
 
