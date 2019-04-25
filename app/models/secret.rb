@@ -1,6 +1,6 @@
 class Secret < ApplicationRecord
-  geocoded_by :ip_address,
-  :latitude => :lat, :longitude => :lon
+  belongs_to :user
+  geocoded_by :ip_address, :latitude => :lat, :longitude => :lon
   after_validation :geocode
 
 # return a secret once a secret is shared
@@ -28,6 +28,6 @@ end
   def findSecret
 
       Secret.all.find_all{ |secret| self.sentence.split.find { |i| secret.sentence.include?(i) } }
-    
+
   end
-end  
+end
