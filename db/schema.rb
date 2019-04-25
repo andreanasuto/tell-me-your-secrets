@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180315025022) do
 
-  create_table "locations", force: :cascade do |t|
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "secrets", force: :cascade do |t|
     t.text "sentence"
     t.datetime "created_at", null: false
