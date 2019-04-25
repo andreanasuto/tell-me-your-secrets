@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315025022) do
+ActiveRecord::Schema.define(version: 20190425161618) do
 
   create_table "secrets", force: :cascade do |t|
     t.text "sentence"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20180315025022) do
     t.float "longitude"
     t.string "ip_address"
     t.string "address"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "auth_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
   end
 
 end
