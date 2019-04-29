@@ -1,13 +1,15 @@
 class SecretsController < ApplicationController
   def new
-    @secret = Secret.new    
+    @secret = Secret.new
   end
 
   def create
-    @secret = Secret.create(sentence: params[:secret][:sentence], 
-                            latitude: request.location.latitude, 
-                            longitude: request.location.longitude)
+    @secret = Secret.create(
+              sentence: params[:secret][:sentence],
+              latitude: request.location.latitude,
+              longitude: request.location.longitude)
     redirect_to secret_path(@secret)
+    
     # list of attributes for location:
     # "ip"=>"127.0.0.1",
     # "city"=>"",
