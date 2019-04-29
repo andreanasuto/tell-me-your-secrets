@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
+  get 'sessions/create'
+
   resources :users do
     resources :secrets
     # POST /users/:id/secrets - a secret belongs to a user!
