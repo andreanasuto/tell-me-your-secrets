@@ -26,8 +26,6 @@ end
     end
 
   def findSecret
-
       Secret.all.find_all{ |secret| self.sentence.split.find { |i| secret.sentence.include?(i) } }
-
   end
 end
