@@ -4,14 +4,14 @@ class SecretsController < ApplicationController
   end
 
   def create
-    raise params.inspect
     @secret = Secret.create(
               sentence: params[:secret][:sentence],
-              latitude: request.location.latitude,
-              longitude: request.location.longitude
+              # latitude: request.location.latitude,
+              # longitude: request.location.longitude
+              latitude: params[:secret][:latitude],
+              longitude: params[:secret][:longitude]
               )
-    redirect_to secret_path(@secret)
-
+              
     # list of attributes for location:
     # "ip"=>"127.0.0.1",
     # "city"=>"",
@@ -24,6 +24,7 @@ class SecretsController < ApplicationController
     # "country_name"=>"Reserved",
     # "country_code"=>"RD"}
 
+    redirect_to secret_path(@secret)
   end
 
   def show
