@@ -1,17 +1,20 @@
 class SecretsController < ApplicationController
+
   def new
     @secret = Secret.new
   end
 
   def create
-    @secret = Secret.create(
-              sentence: params[:secret][:sentence],
+    @secret = Secret.new(
+              sentence: params[:secret][:sentence]
               # latitude: request.location.latitude,
               # longitude: request.location.longitude
-              latitude: params[:secret][:latitude],
-              longitude: params[:secret][:longitude]
               )
-              
+    @secret.location = Location.where(
+      :latitude => params[:secret][:latitude],
+      :longitude => params[:secret][:longitude]).first_or_create
+    @secret.save
+
     # list of attributes for location:
     # "ip"=>"127.0.0.1",
     # "city"=>"",
