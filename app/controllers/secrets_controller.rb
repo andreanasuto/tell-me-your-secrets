@@ -4,6 +4,7 @@ class SecretsController < ApplicationController
   end
 
   def create
+    raise params.inspect
     @secret = Secret.create(
               sentence: params[:secret][:sentence],
               latitude: request.location.latitude,
