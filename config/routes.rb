@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
 
   resources :users do
-    resources :secrets
+    resources :secrets, only: [:show,:index]
     # POST /users/:id/secrets - a secret belongs to a user!
-    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   end
 
+  resources :locations do
+    resources :secrets, only: [:index]
+  end
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end
