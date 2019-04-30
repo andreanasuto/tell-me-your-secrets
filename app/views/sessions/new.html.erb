@@ -1,4 +1,4 @@
-<h1>Login/h1>
+<h1>Login</h1>
 <%= form_for(:session, url: login_path) do |f| %>
 
   <%= f.label :email %>
@@ -10,5 +10,5 @@
   <%= f.submit "Log in" %>
 <% end %>
 
-<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+<p>New user? <%= link_to "Sign up now", signup_path %></p>
 <p><%= link_to "Log in or sign up with Github", login_path %></p>
