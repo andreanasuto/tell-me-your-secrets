@@ -22,7 +22,7 @@ class SecretsController < ApplicationController
     # "longitude"=>"0",
     # "country_name"=>"Reserved",
     # "country_code"=>"RD"}
-    
+
   end
 
   def show
