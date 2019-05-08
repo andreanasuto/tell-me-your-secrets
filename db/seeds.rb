@@ -6,7 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+location_1 = Location.create(latitude: 40.687142, longitude: -73.962116) # Bar Laika - Clinton Hill, NYC
+location_2 = Location.create(latitude: 40.676972, longitude: -73.990083) # Gowanus Canal - Streetart Work, NYC
+location_3 = Location.create(latitude: 31.627054, longitude: -7.985954) # Marrakech - Barber Shop, Morocco
+
+user_1 = User.create({name: "herny_kissinger", email: "kissinger@secretplan.gov", password: SecureRandom.hex(10)})
+user_2 = User.create({name: "pelin_is_a_cat", email: "pelin@catemail.ai", password: SecureRandom.hex(10)})
+
 secrets = Secret.create([
-  { sentence: 'I love Adam Curtis!', latitude: 40.703112, longitude: -73.985296},
-  {sentence: 'I genuinely think Luis Nazario de Lima Ronaldo is an artist', latitude: 40.711636, longitude: -73.993349}
+  {sentence: 'I love Adam Curtis!', location_id: location_1.id, user_id: user_1.id },
+  {sentence: 'I genuinely think Luis Nazario de Lima Ronaldo is an artist', location_id: location_2.id, user_id: user_2.id},
+  {sentence: 'I had my hair cut here!', location_id: location_3.id, user_id: user_1.id}
   ])
