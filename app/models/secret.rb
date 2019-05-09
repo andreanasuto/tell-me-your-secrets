@@ -1,12 +1,17 @@
 class Secret < ApplicationRecord
-  # belongs_to :user
-  geocoded_by :ip_address, :latitude => :lat, :longitude => :lon
-  after_validation :geocode
+  belongs_to :user
+  belongs_to :location
 
-# return a secret once a secret is shared
+  validates :sentence, presence: true
 
+def secrets_close_to_a_location
+  # this method should return secrets that are close to a location
+end
+
+# return a random secret once a secret is shared
 def returnSecret
   secret_found = Secret.all.sample
+  # it avoids that it returns the secret just shared by itself
     if secret_found == self
        return self.returnSecret
     else
@@ -14,8 +19,7 @@ def returnSecret
     end
 end
 
-# more complex method to return secret found
-
+# more complex method to return secret founds
    def returnSecretComplex
     @secret_found = self.findSecret
     if @secret_found != self
