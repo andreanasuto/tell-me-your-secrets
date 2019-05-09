@@ -1,37 +1,33 @@
 class SecretsController < ApplicationController
+before_action :authentification_required
 
   def new
     @secret = Secret.new
+    @location = @secret.build_location
   end
 
   def create
-    @secret = Secret.new(
-              sentence: params[:secret][:sentence]
-              # latitude: request.location.latitude,
-              # longitude: request.location.longitude
-              )
+    @secret = Secret.new(sentence: params[:secret][:sentence])
     @secret.location = Location.where(
-      :latitude => params[:secret][:latitude],
-      :longitude => params[:secret][:longitude]).first_or_create
+      :latitude => params[:secret][:location][:latitude],
+      :longitude => params[:secret][:location][:longitude]).first_or_create
+    @secret.user = current_user
     @secret.save
-
-    # list of attributes for location:
-    # "ip"=>"127.0.0.1",
-    # "city"=>"",
-    # "region_code"=>"",
-    # "region_name"=>"",
-    # "metrocode"=>"",
-    # "zipcode"=>"",
-    # "latitude"=>"0",
-    # "longitude"=>"0",
-    # "country_name"=>"Reserved",
-    # "country_code"=>"RD"}
-
     redirect_to secret_path(@secret)
   end
 
   def show
     @secret = Secret.find(params[:id])
+  end
+
+  def index
+    @secrets = Secret.all
+  end
+
+  def destroy
+    @secret = Secret.find(params[:id])
+    @secret.destroy
+    redirect_to secrets_path
   end
 
 
