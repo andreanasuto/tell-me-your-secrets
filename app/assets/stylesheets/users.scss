@@ -4,3 +4,12 @@
 input {
   margin: 1% 0%;
 }
+
+.field_with_errors [type]{
+  border: 1px solid red;
+}
+
+#error {
+  font-size: 8px;
+  color: red;
+}
