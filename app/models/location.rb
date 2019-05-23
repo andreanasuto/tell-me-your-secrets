@@ -2,6 +2,8 @@ class Location < ApplicationRecord
   has_many :secrets
   has_many :users, through: :secrets
   accepts_nested_attributes_for :secrets
+  scope :northest_secret, -> {Location.joins(:secrets).group('secret_id').order('max(latitude) DESC').first }
+  scope :southest_secret, -> {Location.joins(:secrets).group('secret_id').order('min(latitude) DESC').first }
 
   reverse_geocoded_by :latitude, :longitude do |obj,results|
   if geo = results.first
@@ -19,5 +21,7 @@ class Location < ApplicationRecord
 end
   after_validation :reverse_geocode
 
-  # validates :address, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
+
 end
