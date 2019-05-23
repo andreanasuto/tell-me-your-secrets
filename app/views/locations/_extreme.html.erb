@@ -1,0 +1,7 @@
+<h1>Welcome to the <%= params[:action] %> secret ever shared</h1>
+<h5> Here in <%= @location.address %> there are secrets.</h5>
+<h2>
+  Discover secrets in <%= @location.city %> by sharing secrets back.<br>
+</h2>
+<h3>Do you want to get there? <a href='https://www.google.com/maps/dir/?api=1&destination=<%= @location.latitude %>,<%= @location.longitude %>' target="_blank"> See directions </a></h3>
+<h3><%= link_to "Do you have a secret at this location?", new_location_secret_path(@location) %></h3> 
