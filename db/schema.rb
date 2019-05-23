@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190430220405) do
+ActiveRecord::Schema.define(version: 20190506184859) do
 
   create_table "locations", force: :cascade do |t|
     t.float "latitude"
@@ -18,16 +18,23 @@ ActiveRecord::Schema.define(version: 20190430220405) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "house_number"
+    t.string "road"
+    t.string "city"
+    t.string "county"
+    t.string "city_district"
+    t.string "suburb"
+    t.string "state"
+    t.string "country"
+    t.string "zipcode"
+    t.integer "secret_id"
+    t.index ["secret_id"], name: "index_locations_on_secret_id"
   end
 
   create_table "secrets", force: :cascade do |t|
     t.text "sentence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
-    t.string "ip_address"
-    t.string "address"
     t.integer "user_id"
     t.integer "location_id"
     t.index ["location_id"], name: "index_secrets_on_location_id"
@@ -41,7 +48,11 @@ ActiveRecord::Schema.define(version: 20190430220405) do
     t.string "auth_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "secret_id"
+    t.string "uid"
+    t.string "provider"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
+    t.index ["secret_id"], name: "index_users_on_secret_id"
   end
 
 end
