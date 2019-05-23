@@ -1,2 +1,11 @@
-<h1>Locations#index</h1>
-<p>Find me in app/views/locations/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <body>
+    <h1>All the locations where a secret has been shared</h1>
+    <ul>
+    <% @locations_name.each do |l| %>
+        <%= link_to l, location_path(l) %><br>
+    <% end %>
+    </ul>
+  </body>
+</html>
