@@ -29,6 +29,7 @@ gem 'geocoder'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'figaro'
 
 #gem 'mongoid', '~> 6.1.0'
 
