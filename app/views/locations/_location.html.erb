@@ -1,10 +1,6 @@
 <h4>Secrets shared here:</h4>
   <iframe width="600" height="450" frameborder="0" style="border:0"
-<<<<<<< HEAD
   src="https://www.google.com/maps/embed/v1/place?q=<%= location.address %>&key=<%=ENV["GOOGLE_MAP_KEY"]%>" allowfullscreen></iframe>
-=======
-  src="https://www.google.com/maps/embed/v1/place?q=<%= location.latitude %>, <%= location.longitude %>&key=<%=ENV["GOOGLE_MAP_KEY"]%>" allowfullscreen></iframe>
->>>>>>> a81e4075776f48c67b27e2dcda10de7f811958cf
 
 <% location.secrets.each do |secret| %>
   <p><%= secret.sentence %> by <%= secret.user.name %></p>
