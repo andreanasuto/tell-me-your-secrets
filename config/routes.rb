@@ -5,17 +5,21 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
-  get '/secrets/new', to: 'secrets#new'
-  
-  resources :secrets
+
+  get '/auth/google_oauth2', as: 'google_login'
+  get '/auth/:provider/callback', to: 'sessions#create'
+
+  resources :secrets, only: [:index, :new, :destroy, :create, :show]
 
   resources :users do
-    resources :secrets, only: [:show, :index]
-    # POST /users/:id/secrets - a secret belongs to a user!
+    resources :secrets, only: [:index, :show, :edit, :update]
   end
 
-  resources :locations do
-    resources :secrets, only: [:index]
+  get '/locations/northernmost', to: 'locations#northernmost'
+  get '/locations/southernmost', to: 'locations#southernmost'
+
+  resources :locations, only: [:show, :index] do
+    resources :secrets, only: [:index, :show, :new]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

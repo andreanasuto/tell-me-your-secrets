@@ -1,2 +1,8 @@
-<h1>Users#show</h1>
-<p><%= @user.name %></p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <h1>Hello <%= @user.name %>!</h1>
+  <h3><%= link_to "See your secrets", user_secrets_path(@user) %></h3>
+  <h3><%= link_to "Create a new Secret", new_secret_path %></h3>
+  <h3><%= link_to "See secrets shared with you", secrets_path %></h3></br>
+  <%= link_to "Logout", logout_path%>
+</html>

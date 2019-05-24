@@ -1,15 +1,22 @@
 <h1>New User</h1>
 <%= form_for(:user, :url => users_path) do |f| %>
   <%= f.label :Nickname %>
-  <%= f.text_field :name %><br />
+  <%= f.text_field :name, :placeholder => @user.errors.messages[:name].first || "Enter a nickname" %>
+  <% if @user.errors.messages[:name].first %>
+    <div id="error"> Nickname <%= @user.errors.messages[:name].first %> </div>
+  <% end %><br />
 
   <%= f.label :email %>
-  <%= f.email_field :email %><br />
+  <%= f.email_field :email, :placeholder => @user.errors.messages[:email].first || "Enter a email" %>
+  <% if @user.errors.messages[:email].first %>
+    <div id="error"> Email <%= @user.errors.messages[:email].first %> </div>
+  <% end %>
+  <br />
 
   <%= f.label :password %>
-  <%= f.password_field :password %><br />
+  <%= f.password_field :password, :placeholder => @user.errors.messages[:password].first || "Enter a password" %><br />
 
   <%= f.submit "Create New User" %>
 <% end %>
 
-<p><%= link_to "Log in or sign up with Github", login_path %></p>
+<p><%= link_to "Log in or sign up with Google", login_path %></p>
