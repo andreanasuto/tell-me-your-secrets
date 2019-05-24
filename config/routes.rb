@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     resources :secrets, only: [:index, :show, :edit, :update]
   end
 
-  get '/locations/northest', to: 'locations#northest'
-  get '/locations/southest', to: 'locations#southest'
+  get '/locations/northernmost', to: 'locations#northernmost'
+  get '/locations/southernmost', to: 'locations#southernmost'
 
   resources :locations, only: [:show, :index] do
     resources :secrets, only: [:index, :show, :new]
