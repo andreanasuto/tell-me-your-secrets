@@ -8,12 +8,12 @@ class LocationsController < ApplicationController
 
   end
 
-  def northest
-    @location = Location.northest_secret
+  def northernmost
+    @location = Location.northernmost_secret
   end
 
-  def southest
-    @location = Location.southest_secret
+  def southernmost
+    @location = Location.southernmost_secret
   end
 
   def show
