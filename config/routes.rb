@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/locations/northernmost', to: 'locations#northernmost'
   get '/locations/southernmost', to: 'locations#southernmost'
 
+  post '/secrets/likes', to: 'secrets#likes'
+
   resources :locations, only: [:show, :index] do
     resources :secrets, only: [:index, :show, :new]
   end
