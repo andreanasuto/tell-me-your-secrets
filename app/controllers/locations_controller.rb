@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.all
-    @locations_name = locations_name
+    @locations_name = Location.locations_name
 
   end
 
@@ -17,12 +17,10 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = find_location #find the location based on params[:location_id]
-    unless check_near_locations #check if the user has shared secret in the location and returns them
-      @locations = close_locations_near_to_a_slug #find all locations near a params[:id]
+    @location = Location.find_location_by_city_or_address(params) #find the location based on params[:location_id]
+    unless current_user.check_near_locations(params) #check if the user has shared secret in the location and returns them
+      @locations = Location.close_locations_near_to_a_slug #find all locations near a params[:id]
     end
   end
-
-
 
 end
