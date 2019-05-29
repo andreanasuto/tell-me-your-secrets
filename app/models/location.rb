@@ -2,6 +2,11 @@ class Location < ApplicationRecord
   has_many :secrets
   has_many :users, through: :secrets
   accepts_nested_attributes_for :secrets
+
+  validates :latitude, presence: true
+  validates :longitude, presence: true
+  after_validation :reverse_geocode
+
   scope :northernmost_secret, -> {Location.joins(:secrets).group('secret_id').order('max(latitude) DESC').first }
   scope :southernmost_secret, -> {Location.joins(:secrets).group('secret_id').order('min(latitude) DESC').first }
 
@@ -19,10 +24,6 @@ class Location < ApplicationRecord
     obj.country = geo.data["address"]["country"]
   end
 end
-  after_validation :reverse_geocode
-
-  validates :latitude, presence: true
-  validates :longitude, presence: true
 
   def self.locations_name
     self.all.collect { |l|
