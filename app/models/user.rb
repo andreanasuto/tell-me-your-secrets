@@ -29,4 +29,12 @@ class User < ApplicationRecord
     end
   end
 
+  def display_secrets
+    self.close_secrets.flatten.uniq
+  end
+
+  def check_near_locations(params)
+    self.locations.near(params[:id]).empty?
+  end
+
 end

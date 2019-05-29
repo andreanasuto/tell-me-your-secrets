@@ -22,6 +22,10 @@ def check_user
   end
 end
 
+def check_user_secret(user)
+  self.user == user
+end
+
 # return a random secret once a secret is shared
 # def returnSecret
 #   secret_found = Secret.all.sample
