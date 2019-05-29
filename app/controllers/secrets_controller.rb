@@ -71,6 +71,15 @@ before_action :authentification_required
     @user = User.find(params[:user_id])
   end
 
+  def likes
+    #it finds the secret that should be liked
+    #it increases the secret.likes by 1
+    @secret = Secret.find(params[:secret_id])
+    @secret.likes += 1
+    @secret.save
+    redirect_to secrets_path
+  end
+
   def update
     @user = User.find(session[:user_id])
     @secret = Secret.find(params[:id])
