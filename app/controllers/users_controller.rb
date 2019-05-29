@@ -17,6 +17,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user == current_user
+    else
+      redirect_to new_secret_path, alert: "You don't have access to this user, you have been redirected"
+    end
   end
 
   private

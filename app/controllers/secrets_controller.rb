@@ -4,7 +4,7 @@ before_action :authentification_required
 
   def new
     @secret = Secret.new
-    if is_location_nested?
+    if params[:location_id]
       @secret.location = Location.find(params[:location_id])
     else
       @location = @secret.build_location
@@ -13,7 +13,7 @@ before_action :authentification_required
 
   def create
     #if eg. locations/1/secrets/new
-    if is_location_nested?
+    if params[:location_id]
       @location = Location.find(params[:location_id])
       @secret = @location.secrets.build(secret_params)
       @secret.user = current_user
@@ -34,21 +34,35 @@ before_action :authentification_required
 
   def show
     @secret = Secret.find(params[:id])
-    check_user_secret
+    if @secret.check_user_secret(current_user)
+    else
+      redirect_to new_secret_path, alert: "You don't have access to this secret, you have been redirected"
+    end
   end
 
   def index
     # e.g. /locations/:location_id/secrets
-    if is_location_nested?
-      display_location_secrets? #check if user has access to that location_id because he/she shared a secret there
+    if params[:location_id]
+      location = Location.find(params[:location_id])
+      if current_user.locations.include?(location) #check if user has access to that location_id because he/she shared a secret there
+        @secrets = location.secrets
+      else
+        redirect_to new_secret_path, alert: "You don't have access to this location, you have been redirected"
+      end
+
 
     # e.g. /users/:user_id/secrets
-    elsif is_user_nested?
-        display_user_secrets? #check if user has access to that user_id because he's the owner of that profile
+    elsif params[:user_id] #is_user_nested? & #check if user has access to that user_id because he's the owner of that profile
+        user = User.find(params[:user_id])
+        if user == current_user
+          @secrets = current_user.secrets
+        else
+          redirect_to new_secret_path, alert: "You don't have access to this user, you have been redirected"
+        end
 
     #e.g /secrets
     else
-      display_secrets # display other people secrets close to the locations of the secrets shared by the user
+      @secrets = current_user.display_secrets # display other people secrets close to the locations of the secrets shared by the user
     end
   end
 
