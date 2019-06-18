@@ -39,7 +39,7 @@ end
     Location.all.find_by(city: params[:id]) || Location.all.find_by(address: params[:id])
   end
 
-  def self.close_locations_near_to_a_slug
+  def self.close_locations_near_to_a_slug(params)
     Location.all.near(params[:id])
   end
 
