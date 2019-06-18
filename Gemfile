@@ -25,12 +25,14 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
 gem 'geocoder'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.9.4'
+gem 'jquery-rails'
 
 #gem 'mongoid', '~> 6.1.0'
 
