@@ -6,25 +6,25 @@ class Secret < ApplicationRecord
   validates_associated :location
   validates_presence_of :location
 
-def close_secrets
-  secrets = []
-  self.location.nearbys.collect do |l|
-    l.secrets.each do |secret|
-      secrets << secret
+  def close_secrets
+    secrets = []
+    self.location.nearbys.collect do |l|
+      l.secrets.each do |secret|
+        secrets << secret
+      end
+    end
+    secrets.reject { |e| e.user == self.user }
+  end
+
+  def check_user
+    if params[:id] || params[:user_id]
+      User.find(params[:id] || params[:user_id]) == current_user
     end
   end
-  secrets.reject { |e| e.user == self.user }
-end
 
-def check_user
-  if params[:id] || params[:user_id]
-    User.find(params[:id] || params[:user_id]) == current_user
+  def check_user_secret(user)
+    self.user == user
   end
-end
-
-def check_user_secret(user)
-  self.user == user
-end
 
 # return a random secret once a secret is shared
 # def returnSecret
