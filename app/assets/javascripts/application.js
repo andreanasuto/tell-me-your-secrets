@@ -13,6 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
 
 function geolocationSuccess(position) {
   // check if the location input value are empty and fill them with if so.
