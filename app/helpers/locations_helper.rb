@@ -7,4 +7,8 @@ module LocationsHelper
       render partial: 'locations/city'
     end
   end
+
+  def has_access_to_location?(location)
+    render partial: 'locations/location', locals: {location: location}
+  end
 end
