@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <h1>Hello <%= @user.name %>!</h1>
-  <h3><%= link_to "See your secrets", user_secrets_path(@user) %></h3>
+  <h3><a href="#" data-id="<%=current_user.id%>" onclick="showSecrets(this)">See your secrets</a></h3>
+  <div class="secrets"></div>
   <h3><%= link_to "Create a new Secret", new_secret_path %></h3>
   <h3><%= link_to "See secrets shared with you", secrets_path %></h3></br>
   <%= link_to "Logout", logout_path%>
 </html>
+
+<script type="text/javascript">
+  function showSecrets(e) {
+    event.preventDefault()
+    const user_id = e.getAttribute('data-id')
+    $.get('/users/' + user_id + '/secrets.json', function (secrets) {
+      let html = '<ul>'
+      for (var i = 0; i < secrets['secrets'].length; i++) {
+        html += '<li>' + secrets['secrets'][i]['sentence'] + '</li>'
+      }
+      html += '</ul>'
+      $('.secrets').html(html)
+  })
+}
+</script>
