@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190529212230) do
+ActiveRecord::Schema.define(version: 20190618211456) do
 
   create_table "locations", force: :cascade do |t|
     t.float "latitude"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20190529212230) do
     t.string "state"
     t.string "country"
     t.string "zipcode"
+    t.integer "secret_id"
   end
 
   create_table "secrets", force: :cascade do |t|
