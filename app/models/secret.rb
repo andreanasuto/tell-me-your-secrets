@@ -2,7 +2,7 @@ class Secret < ApplicationRecord
   belongs_to :user
   belongs_to :location
 
-  validates :sentence, presence: true
+  validates :sentence, presence: {message: 'You should insert a secret!'}
   validates_associated :location
   validates_presence_of :location
 
