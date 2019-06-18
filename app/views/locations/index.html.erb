@@ -4,7 +4,7 @@
     <h1>All the locations where a secret has been shared</h1>
     <ul>
     <% @locations_name.each do |l| %>
-        <%= link_to l, location_path(l) %><br>
+        <%= link_to l, location_path(l), class: "city" %><br>
     <% end %>
     </ul>
   </body>
