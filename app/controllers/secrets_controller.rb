@@ -13,23 +13,41 @@ before_action :authentification_required
 
   def create
     #if eg. locations/1/secrets/new
-    if params[:location_id]
-      @location = Location.find(params[:location_id])
+    if params[:location_id] || params[:secret][:location_id]
+      @location = Location.find(params[:secret][:location_id])
       @secret = @location.secrets.build(secret_params)
       @secret.user = current_user
+      if @secret.save
+        respond_to do |format|
+          format.json {render json: @secret, status: 201}
+          format.html {redirect_to location_secrets_path(@location)}
+        end
+      else
+        respond_to do |format|
+          format.html { render :new }
+          format.json { render json: @secret.errors, status: :unprocessable_entity }
+        end
+      end
+
+    #if eg. secrets/new
     else
       @location = Location.find_or_create_by(
         :latitude => params[:secret][:location][:latitude].to_f.round(4),
         :longitude => params[:secret][:location][:longitude].to_f.round(4))
       @secret = @location.secrets.build(secret_params)
       @secret.user = current_user
+      if @secret.save
+        respond_to do |format|
+          format.json {render json: @secret, status: 201 }
+          format.html {redirect_to secrets_path}
+        end
+      else
+        respond_to do |format|
+          format.html { render :new }
+        end
+      end
     end
 
-    if @secret.save
-      redirect_to secrets_path
-    else
-      render :new
-    end
   end
 
   def show
@@ -45,7 +63,8 @@ before_action :authentification_required
     if params[:location_id]
       location = Location.find(params[:location_id])
       if current_user.locations.include?(location) #check if user has access to that location_id because he/she shared a secret there
-        @secrets = location.secrets
+        @secret = Secret.new
+        @secrets = location.secrets.reject { |e| e.user == current_user } #select secrets only shared by others not secrets created by the user
       else
         redirect_to new_secret_path, alert: "You don't have access to this location, you have been redirected"
       end
@@ -56,13 +75,22 @@ before_action :authentification_required
         user = User.find(params[:user_id])
         if user == current_user
           @secrets = current_user.secrets
+          respond_to do |f|
+            f.html
+            f.json {render json: @secrets, status: 201}
+          end
         else
           redirect_to new_secret_path, alert: "You don't have access to this user, you have been redirected"
         end
 
     #e.g /secrets
     else
+      @secret = Secret.new
       @secrets = current_user.display_secrets # display other people secrets close to the locations of the secrets shared by the user
+      respond_to do |f|
+        f.html
+        f.json {render json: @secrets, status: 201}
+      end
     end
   end
 
@@ -90,7 +118,7 @@ before_action :authentification_required
   def destroy
     @secret = Secret.find(params[:id])
     @secret.destroy
-    redirect_to new_secret_path
+    redirect_to user_secrets_path(current_user)
   end
 
   private
