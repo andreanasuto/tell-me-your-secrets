@@ -1,11 +1,19 @@
-<h4>Secrets shared here:</h4>
-  <iframe width="600" height="450" frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?q=<%= location.address %>&key=<%=ENV["GOOGLE_MAP_KEY"]%>" allowfullscreen></iframe>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <body>
+    <h4>Secrets shared here:</h4>
+      <iframe width="600" height="450" frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?q=<%= location.address %>&key=<%=ENV["GOOGLE_MAP_KEY"]%>" allowfullscreen></iframe>
 
-<% location.secrets.each do |secret| %>
-  <p><%= secret.sentence %> by <%= secret.user.name %></p>
-<% end %>
-<%= link_to "Do you have a secret here?", new_location_secret_path(location) %><br>
-<%= link_to "See your secrets", user_secrets_path(current_user) %><br>
-<%= link_to "See all secrets shared with you", secrets_path %>
-<hr>
+    <div class="secrets">
+    <% location.secrets.each do |secret| %>
+        <p><%= secret.sentence %> by <%= secret.user.name %></p>
+    <% end %>
+    </div>
+    
+    <%= link_to "Do you have a secret here?", new_location_secret_path(location) %><br>
+    <%= link_to "See your secrets", user_secrets_path(current_user) %><br>
+    <%= link_to "See all secrets shared with you", secrets_path %>
+    <hr>
+  </body>
+</html>
