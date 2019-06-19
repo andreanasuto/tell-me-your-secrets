@@ -2,7 +2,7 @@
 
 > I'll share a secret and you'll tell me yours
 
-'Tell me your secret' is a ROR (Ruby on Rails) app inspired by 'The future of secrets' art exhibition by Sarah Newman, Jessica Yurkofsky and Rachel Kalmar from [metaLab (at) Harvard](https://metalabharvard.github.io/) part of the Berkman Klein Center for Internet & Society.
+'Tell me your secret' is a ROR (Ruby on Rails) and Javascript app and portfolio project, inspired by 'The future of secrets' art exhibition by Sarah Newman, Jessica Yurkofsky and Rachel Kalmar from [metaLab (at) Harvard](https://metalabharvard.github.io/) part of the Berkman Klein Center for Internet & Society.
 
 A simple form asks to anonymously share a secret. The app automatically store the IP address of the user inserting the secret.
 Once the secret is written down, another secret is shared back together with the geo-location of that secret.
@@ -22,3 +22,30 @@ The users of the ELIZA shared deep secrets with it and told the computer extreme
 This pattern has become more and more relevant with the spread of internet and social media platforms. Data centers are now one of the most relevant source of personal secrets in the world and mostly because we *give* them these information, just like in the ELIZA experiment.
 'Tell me your secret' is a project where the act of sharing a secret is a human-to-human bilateral interaction through a machine, instead of unilateral and solitary experience.
 At the same time, it creates awareness around the problem of how much private information we share online and how long these information are stored in the data centers.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Installing
+After forking and cloning, run bundle install, migrations and seed
+
+```
+bundle install
+rake db:migrate
+rake db:seed
+```
+
+## Authors
+
+* **Andrea Nasuto** - [Github](https://github.com/andreanasuto)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License
+
+## Acknowledgments
+
+* Harvard MetaLab
